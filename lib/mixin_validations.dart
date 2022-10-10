@@ -1,6 +1,6 @@
 final RegExp emailValid = RegExp(
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-
+final RegExp nameRegExp = RegExp('[a-zA-Z]');
 bool isValueEmpty(String value) {
   if (value.isEmpty) {
     return true;
@@ -27,5 +27,35 @@ mixin TextFormFieldValidationMixin {
       return null;
     }
     return 'Email is not Valid';
+  }
+
+  String? isIdCardValid(String? value) {
+    if (isValueEmpty(value!)) {
+      return 'ID Card is Must';
+    }
+    if (value.length != 15) {
+      return 'InValid ID Card Number';
+    }
+    return null;
+  }
+
+  String? isNameValid(String? value) {
+    if (isValueEmpty(value!)) {
+      return 'Name is required Field';
+    }
+    if (nameRegExp.hasMatch(value)) {
+      return null;
+    }
+    return 'Invalid Name';
+  }
+
+  String? isMobileNoValid(String? value) {
+    if (isValueEmpty(value!)) {
+      return 'Mobile No is Mandatory';
+    }
+    if (value.length == 11) {
+      return null;
+    }
+    return 'Not a Mobile No';
   }
 }
